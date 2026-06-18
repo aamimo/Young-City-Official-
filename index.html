@@ -36,7 +36,6 @@
 </header>
 
 <section class="page" id="page-home">
-  <!-- 1. HERO SECTION WITH SLIDESHOW -->
   <div class="hero">
     <div class="hero-slideshow">
       <div class="hero-slide" style="background-image:url('assets/photo8.jpg')"></div>
@@ -78,7 +77,6 @@
     </div>
   </div>
 
-  <!-- 2. TWO-COLUMN SECTION WITH SLIDESHOW -->
   <div class="container section two-col">
     <div>
       <h2>A home of hope, discipline & creativity.</h2>
@@ -95,17 +93,14 @@
     </div>
   </div>
 
-  <!-- Standalone Dedicated Video Section -->
   <section class="showcase-video-section">
     <div class="video-wrapper">
       
-      <!-- The optimized video loop with lowercase formatting and autoplay configurations -->
       <video autoplay loop muted playsinline preload="auto" class="standalone-video">
         <source src="video/welcome.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       
-      <!-- Text Overlay directly on top of the video -->
       <div class="video-text-overlay">
         <h2 class="welcome-text">Welcome to Young City</h2>
       </div>
@@ -126,7 +121,6 @@
     </div>
   </div>
 
-  <!-- 3. CTA SECTION WITH SLIDESHOW -->
   <div class="container section">
     <div class="cta-card">
       <div class="cta-slideshow">
@@ -328,7 +322,6 @@
 
 <section class="page" id="page-support">
 <div class="support-grid">
-      <!-- Card 1: Financial -->
       <div class="support-card visual-tilt" data-color="rgba(255,193,7,0.15)">
         <div class="card-glow"></div>
         <div class="card-content">
@@ -340,7 +333,6 @@
         </div>
       </div>
            
-      <!-- Card 2: Equipment -->
       <div class="support-card visual-tilt" data-color="rgba(0,123,255,0.15)">
         <div class="card-glow"></div>
         <div class="card-content">
@@ -352,7 +344,6 @@
         </div>
       </div>
            
-      <!-- Card 3: Volunteer (UPDATED TO LINK TO VOLUNTEER.HTML) -->
       <div class="support-card visual-tilt" data-color="rgba(40,167,69,0.15)">
         <div class="card-glow"></div>
         <div class="card-content">
@@ -364,7 +355,6 @@
         </div>
       </div>
 
-      <!-- Card 4: Bookings (UPDATED TO LINK TO BOOKING.HTML) -->
       <div class="support-card visual-tilt" data-color="rgba(220,53,69,0.15)">
         <div class="card-glow"></div>
         <div class="card-content">
@@ -453,19 +443,24 @@
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 <script src="script.js"></script>
 
-  <script>
-  // Runs automatically on home reload to check if a user arrived from team page link
-  window.addEventListener('DOMContentLoaded', () => {
-    const routeTo = localStorage.getItem('routeTo');
-    if (routeTo) {
-      localStorage.removeItem('routeTo'); // Clean up state
-      const targetLink = document.querySelector(`[data-link="${routeTo}"]`);
-      if (targetLink) {
-        setTimeout(() => targetLink.click(), 100); // Programmatically switches section tab smoothly
+<script>
+  window.addEventListener('hashchange', function() {
+    const hash = window.location.hash;
+    if (hash) {
+      const pageId = 'page-' + hash.replace('#', '');
+      const targetSection = document.getElementById(pageId);
+      if (targetSection) {
+        // Find matching navigation script triggers and click them automatically
+        const dataLink = hash.replace('#', '');
+        const trigger = document.querySelector(`[data-link="${dataLink}"]`);
+        if(trigger) { trigger.click(); }
       }
     }
   });
+  // Execute checks on startup loads
+  window.addEventListener('DOMContentLoaded', function() {
+    if(window.location.hash) { window.dispatchEvent(new Event('hashchange')); }
+  });
 </script>
-  
 </body>
 </html>
