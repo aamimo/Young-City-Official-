@@ -452,5 +452,20 @@
 
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 <script src="script.js"></script>
+
+  <script>
+  // Runs automatically on home reload to check if a user arrived from team page link
+  window.addEventListener('DOMContentLoaded', () => {
+    const routeTo = localStorage.getItem('routeTo');
+    if (routeTo) {
+      localStorage.removeItem('routeTo'); // Clean up state
+      const targetLink = document.querySelector(`[data-link="${routeTo}"]`);
+      if (targetLink) {
+        setTimeout(() => targetLink.click(), 100); // Programmatically switches section tab smoothly
+      }
+    }
+  });
+</script>
+  
 </body>
 </html>
