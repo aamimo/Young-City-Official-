@@ -10,103 +10,236 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Premium Interactive Team Overrides */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .team-card-modern {
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .team-card-modern:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+    .team-img-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 110%; /* Harmonized aspect ratio avoids blank spaces */
+      overflow: hidden;
+      background: #f4f4f4;
+    }
+    .team-img-wrapper img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .team-card-modern:hover .team-img-wrapper img {
+      transform: scale(1.05);
+    }
+    .team-badge-role {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--brand-blue-deep, #1a1a1a);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .team-info-modern {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .team-info-modern h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      color: #111;
+    }
+    .team-bio-scroll {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .team-connect {
+      border-top: 1px solid #eee;
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .team-connect a {
+      color: var(--brand-blue, #007bff);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s ease;
+    }
+    .team-connect a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+    .team-decor-stripe {
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--brand-blue, #007bff), var(--brand-green, #28a745));
+    }
+    /* Highlight layout showcase styling for Founder card */
+    .featured-founder {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: row;
+      background: #111;
+      color: #fff;
+    }
+    .featured-founder .team-info-modern h3 { color: #fff; font-size: 28px; }
+    .featured-founder .team-bio-scroll { color: #ccc; }
+    .featured-founder .team-img-wrapper { width: 40%; padding-top: 0; min-height: 100%; }
+    .featured-founder .team-connect { border-color: #222; }
+    .featured-founder .team-connect a { color: var(--brand-yellow, #ffc107); }
+
+    @media (max-width: 768px) {
+      .featured-founder { flex-direction: column; }
+      .featured-founder .team-img-wrapper { width: 100%; padding-top: 100%; }
+    }
+  </style>
 </head>
 <body>
 
 <header class="header">
   <div class="container header-inner">
-    <a href="index.html#home" class="brand">
+    <a href="index.html" class="brand">
       <img src="assets/logo.jpg" alt="Young City Foundation logo" />
       <div class="brand-text"><strong>Young City</strong><span>Foundation</span></div>
     </a>
     <nav class="nav" id="nav">
-      <a href="index.html#home">Home</a>
-      <a href="index.html#about">About</a>
+      <!-- Fixed programmatic routing safely loads baseline script states -->
+      <a href="index.html" onclick="localStorage.setItem('routeTo', 'home')">Home</a>
+      <a href="index.html" onclick="localStorage.setItem('routeTo', 'about')">About</a>
       <a href="team.html" class="active">Our Team</a>
-      <a href="index.html#gallery">Gallery</a>
-      <a href="index.html#members">Members</a>
-      <a href="index.html#programs">Programs</a>
-      <a href="index.html#support">Ways to Support</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="index.html" onclick="localStorage.setItem('routeTo', 'gallery')">Gallery</a>
+      <a href="index.html" onclick="localStorage.setItem('routeTo', 'members')">Members</a>
+      <a href="index.html" onclick="localStorage.setItem('routeTo', 'programs')">Programs</a>
+      <a href="index.html" onclick="localStorage.setItem('routeTo', 'support')">Ways to Support</a>
+      <a href="index.html" onclick="localStorage.setItem('routeTo', 'contact')">Contact</a>
     </nav>
     <a class="btn btn-primary btn-donate-header" href="https://www.leetchi.com/fr/c/safe-place-for-young-city-crew-1609302" target="_blank" rel="noreferrer">Donate</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
   </div>
 </header>
 
-<section class="page" style="display: block; padding-top: 120px; padding-bottom: 80px;">
-  <div class="container section">
-    <span class="eyebrow">Leadership</span>
-    <h1 style="margin-top:12px;font-size:clamp(36px,6vw,72px);font-weight:800;letter-spacing:-0.02em;">Our Team</h1>
-    <p class="lead" style="font-size:20px;">Meet the dedicated trainers, coordinators, and visionaries leading the movement to inspire the next generation through dance.</p>
+<section class="page" style="display: block; padding-top: 140px; padding-bottom: 100px; background: #fdfdfd;">
+  <div class="container">
+    <span class="eyebrow" style="text-align: center; display: block;">The Faces Behind The Movement</span>
+    <h1 style="text-align:center; margin-top:12px; font-size:clamp(32px,5vw,56px); font-weight:800; letter-spacing:-0.02em;">Meet Our Team</h1>
+    <p class="lead" style="text-align:center; max-width: 700px; margin: 16px auto 0 auto; font-size:18px; color: #555;">The trainers, coordinators, and youth leaders driving change across Nairobi through creative expression and mentorship.</p>
 
-    <!-- Trainer -->
-    <div class="ceo-card">
-      <img src="assets/eugene.jpg" alt="Eugene Omondi, Bboy Noty" />
-      <div class="ceo-info">
-        <span class="role">Trainer</span>
-        <h3>Eugene Omondi (Bboy Noty)</h3>
-        <p class="bio">My name is Eugene Omondi, but you can call me Bboy Noty. I am one of the trainers at Young City. Dancing is more than just movement to me—it is my passion, my expression, and a big part of who I am. I truly love dancing with Young City because, when I was younger, I also learned Bboy, and that journey shaped me into the dancer and trainer I am today.</p>
-        <div class="meta" style="margin-top:15px;">
-          <div><strong>Phone:</strong> <a href="tel:+254758444533">+254 758 444 533</a></div>
-          <div><strong>Instagram:</strong> <a href="https://www.instagram.com/bboy.noty?igsh=OGh2YmMyOWp6NWpv" target="_blank" rel="noreferrer">@bboy.noty</a></div>
+    <div class="team-grid">
+      
+      <!-- FEATURED FOUNDER CARD -->
+      <div class="team-card-modern featured-founder">
+        <div class="team-badge-role" style="background: var(--brand-red, #dc3545);">Founder & CEO</div>
+        <div class="team-img-wrapper">
+          <img src="assets/ceo.jpg" alt="Neville Nyamongo" />
         </div>
-        <div class="stripe"></div>
+        <div class="team-info-modern">
+          <h3>Neville Nyamongo</h3>
+          <div class="team-bio-scroll">
+            <p>Neville started Young City Crew in 2020 at just 11 years old with a clear vision: giving young people a safe space to grow. Today, he fields operations and leads a core network of dedicated teammates guiding over 100 children across Nairobi.</p>
+          </div>
+          <div class="team-connect">
+            <div><strong>Phone:</strong> <a href="tel:+254114633299">+254 114 633 299</a></div>
+            <div><strong>Instagram:</strong> <a href="https://www.instagram.com/kid_neville?igsh=YmtkeXhodHhyZG9u" target="_blank" rel="noreferrer">@kid_neville</a></div>
+            <div style="color: #aaa;"><strong>Based in:</strong> Nairobi, Kenya</div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Coordinator -->
-    <div class="ceo-card">
-      <img src="assets/felix.jpg" alt="Felix Mboya, Foundation Coordinator" />
-      <div class="ceo-info">
-        <span class="role">Foundation Coordinator</span>
-        <h3>Felix Mboya</h3>
-        <div class="bio">
-          <p>Felix Mboya is a dedicated youth leader, mentor, and community development professional serving as the Foundation Coordinator of the organization. With a deep passion for empowering young people, Felix plays a central role in overseeing programs that nurture talent, build discipline, and create opportunities for growth in dance, football, rugby, beadwork, and visual arts such as drawing and design.</p>
-          <p>As Foundation Coordinator, Felix is responsible for managing daily operations, coordinating program leaders, building partnerships, and ensuring that every initiative aligns with the foundation’s mission of transforming lives through talent, creativity, sports, and education. His leadership focuses on creating safe spaces where children and young people can discover their abilities, develop confidence, and become responsible members of society.</p>
-          <p>Felix strongly believes that talent is a powerful tool for change. Through his work, he has helped connect youth to mentorship, training opportunities, competitions, and community projects that encourage both personal and professional growth. His vision is to build a generation of young leaders who use their gifts not only for success, but also to uplift their communities.</p>
-          <p>Known for his strong organizational skills, commitment to excellence, and heart for service, Felix Mboya continues to be a driving force behind the foundation’s mission of empowering youth through movement, sports, creativity, and life skills development.</p>
-          <p style="font-style: italic; margin-top: 10px;">“When young people are given opportunity, guidance, and belief, they can transform their future—and the future of their community.” – Felix Mboya</p>
+      <!-- TRAINER -->
+      <div class="team-card-modern">
+        <div class="team-badge-role" style="background: #007bff;">Trainer</div>
+        <div class="team-img-wrapper">
+          <img src="assets/eugene.jpg" alt="Eugene Omondi" />
         </div>
-        <div class="meta" style="margin-top:15px;">
-          <div><strong>Instagram:</strong> <a href="https://www.instagram.com/felixycity?igsh=MTV1cG9oNHlkYXpjcw==" target="_blank" rel="noreferrer">@felixycity</a></div>
+        <div class="team-info-modern">
+          <h3>Eugene Omondi (Bboy Noty)</h3>
+          <div class="team-bio-scroll">
+            <p>Dancing is more than just raw movement—it is pure passion and identity. Having come up learning breaking techniques early on, Eugene balances technical excellence with structural movement work to guide emerging street dancers.</p>
+          </div>
+          <div class="team-connect">
+            <div><strong>Phone:</strong> <a href="tel:+254758444533">+254 758 444 533</a></div>
+            <div><strong>Instagram:</strong> <a href="https://www.instagram.com/bboy.noty?igsh=OGh2YmMyOWp6NWpv" target="_blank" rel="noreferrer">@bboy.noty</a></div>
+          </div>
+          <div class="team-decor-stripe"></div>
         </div>
-        <div class="stripe"></div>
       </div>
-    </div>
 
-    <!-- Speaker -->
-    <div class="ceo-card">
-      <img src="assets/sebastian.png" alt="Sebastian Thoar Gideon" />
-      <div class="ceo-info">
-        <span class="role">Speaker of Young City</span>
-        <h3>Sebastian Thoar Gideon</h3>
-        <p class="bio">Sebastian Thoar Gideon is the speaker of young city. He is passionate about art in general. Determined, hardworking and envisions changing the lives of as many children as he can.</p>
-        <div class="meta" style="margin-top:15px;">
-          <div><strong>Phone:</strong> <a href="tel:+254768406345">+254 768 406 345</a></div>
-          <div><strong>Instagram:</strong> <a href="https://www.instagram.com/gatpanthoar?igsh=MTNjZmxuc2lnNTdmZg==" target="_blank" rel="noreferrer">@gatpanthoar</a></div>
+      <!-- SPEAKER -->
+      <div class="team-card-modern">
+        <div class="team-badge-role" style="background: #ffc107; color: #111;">Speaker</div>
+        <div class="team-img-wrapper">
+          <img src="assets/sebastian.png" alt="Sebastian Thoar Gideon" />
         </div>
-        <div class="stripe"></div>
-      </div>
-    </div>
-    
-    <!-- Founder -->
-    <h2 style="text-align:center;margin-top:80px;">Meet Our Founder & CEO</h2>
-    <div class="ceo-card">
-      <img src="assets/ceo.jpg" alt="Neville Nyamongo, CEO" />
-      <div class="ceo-info">
-        <span class="role">Founder & CEO</span>
-        <h3>Neville Nyamongo</h3>
-        <p class="bio">Neville started Young City Crew in 2020 at just 11 years old, with a vision of giving every young person a safe space to grow. Today he leads a team of dedicated teenagers guiding over 100 kids across Nairobi.</p>
-        <div class="meta">
-          <div><strong>Phone:</strong> <a href="tel:+254114633299">+254 114 633 299</a></div>
-          <div><strong>Instagram:</strong> <a href="https://www.instagram.com/kid_neville?igsh=YmtkeXhodHhyZG9u" target="_blank" rel="noreferrer">@kid_neville</a></div>
-          <div><strong>Based in:</strong> Nairobi, Kenya</div>
+        <div class="team-info-modern">
+          <h3>Sebastian Thoar Gideon</h3>
+          <div class="team-bio-scroll">
+            <p>A multi-disciplinary creative coordinator passionate about visual arts and youth advocacy. Hardworking, articulate, and dedicated to transforming structural opportunities for community kids through storytelling.</p>
+          </div>
+          <div class="team-connect">
+            <div><strong>Phone:</strong> <a href="tel:+254768406345">+254 768 406 345</a></div>
+            <div><strong>Instagram:</strong> <a href="https://www.instagram.com/gatpanthoar?igsh=MTNjZmxuc2lnNTdmZg==" target="_blank" rel="noreferrer">@gatpanthoar</a></div>
+          </div>
+          <div class="team-decor-stripe"></div>
         </div>
-        <div class="stripe"></div>
       </div>
-    </div>
 
+      <!-- COORDINATOR -->
+      <div class="team-card-modern" style="grid-column: span 1;">
+        <div class="team-badge-role" style="background: #28a745;">Coordinator</div>
+        <div class="team-img-wrapper">
+          <img src="assets/felix.jpg" alt="Felix Mboya" />
+        </div>
+        <div class="team-info-modern">
+          <h3>Felix Mboya</h3>
+          <div class="team-bio-scroll">
+            <p>Felix oversees daily grassroots operations, program layouts, and core collaborative pipelines. He manages multi-sport channels stretching across football, rugby, and design arts to forge local youth advancement hubs.</p>
+          </div>
+          <div class="team-connect">
+            <div><strong>Instagram:</strong> <a href="https://www.instagram.com/felixycity?igsh=MTV1cG9oNHlkYXpjcw==" target="_blank" rel="noreferrer">@felixycity</a></div>
+          </div>
+          <div class="team-decor-stripe"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -123,19 +256,20 @@
         <p>+254 114 633 299</p>
         <p>youngcitydancecrew@gmail.com</p>
       </div>
-      <div class="footer-column">
-        <h4>Follow Us</h4>
-        <div class="social-links">
-          <a href="https://www.instagram.com/young_city_crew?igsh=MWE3b2VoNWE0ODBobg==" target="_blank" rel="noreferrer">Instagram</a>
-          <a href="https://youtube.com/@youngcitydancekids?si=V7y2l3WD0FM87K48" target="_blank" rel="noreferrer">YouTube</a>
-          <a href="https://www.tiktok.com/@youngcitykids" target="_blank" rel="noreferrer">TikTok</a>
-        </div>
-      </div>
     </div>
   </div>
   <div class="copy">© <span id="yr"></span> Young City Foundation</div>
 </footer>
 
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  
+  // Mobile responsive menu toggle support
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('nav');
+  if(menuToggle && nav) {
+    menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
+  }
+</script>
 </body>
 </html>
