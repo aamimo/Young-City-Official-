@@ -11,35 +11,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Interactive Modern Team Layout Overrides */
+    /* Absolute Safari Compatibility Grid Overhaul */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
       gap: 32px;
       margin-top: 48px;
     }
+    
     .team-card-modern {
       background: #ffffff;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
       position: relative;
       border: 1px solid rgba(0,0,0,0.03);
+      height: 100%; /* Ensures identical heights without breaking flex contents */
     }
+    
     .team-card-modern:hover {
-      transform: translateY(-10px);
+      transform: translateY(-5px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.12);
     }
+    
     .team-img-wrapper {
       position: relative;
       width: 100%;
-      padding-top: 110%;
+      padding-top: 95%; /* Perfect fixed aspect ratio safe across text resizing */
       overflow: hidden;
       background: #f4f4f4;
     }
+    
     .team-img-wrapper img {
       position: absolute;
       top: 0;
@@ -47,11 +52,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
     }
-    .team-card-modern:hover .team-img-wrapper img {
-      transform: scale(1.05);
-    }
+    
     .team-badge-role {
       position: absolute;
       top: 16px;
@@ -60,25 +62,27 @@
       color: #fff;
       padding: 6px 14px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      z-index: 2;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 3;
     }
+    
     .team-info-modern {
-      padding: 28px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
+    
     .team-info-modern h3 {
       font-size: 22px;
       font-weight: 700;
       margin: 0 0 12px 0;
       color: #111;
     }
+    
     .team-bio-scroll {
       font-size: 14px;
       line-height: 1.6;
@@ -86,6 +90,7 @@
       margin-bottom: 20px;
       flex-grow: 1;
     }
+    
     .team-connect {
       border-top: 1px solid #eee;
       padding-top: 16px;
@@ -93,37 +98,51 @@
       flex-direction: column;
       gap: 8px;
       font-size: 13px;
+      margin-top: auto; /* Locks metadata block cleanly to card baselines */
     }
+    
     .team-connect a {
       color: #007bff;
       text-decoration: none;
       font-weight: 600;
     }
-    .team-connect a:hover {
-      text-decoration: underline;
-    }
+    
     .team-decor-stripe {
       height: 4px;
       width: 100%;
       background: linear-gradient(90deg, #007bff, #28a745);
+      margin-top: 12px;
     }
+
+    /* Fixed Founder Layout: Completely avoids row clipping when zoomed */
     .featured-founder {
-      grid-column: 1 / -1;
-      display: flex;
-      flex-direction: row;
+      grid-column: 1 / -1; 
       background: #111;
       color: #fff;
     }
-    .featured-founder .team-info-modern h3 { color: #fff; font-size: 28px; }
+    .featured-founder .team-info-modern h3 { color: #fff; font-size: 26px; }
     .featured-founder .team-bio-scroll { color: #ccc; }
-    .featured-founder .team-img-wrapper { width: 40%; padding-top: 0; min-height: 100%; }
     .featured-founder .team-connect { border-color: #222; }
     .featured-founder .team-connect a { color: #ffc107; }
 
-    @media (max-width: 768px) {
-      .featured-founder { flex-direction: column; }
-      .featured-founder .team-img-wrapper { width: 100%; padding-top: 100%; }
-      .nav.active { display: flex !important; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: #fff; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    /* Safari Responsive Nav Patching */
+    @media (max-width: 991px) {
+      .header-inner { position: relative; }
+      .menu-toggle { display: block !important; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); z-index: 100; cursor: pointer; }
+      .nav { display: none !important; }
+      .nav.active { 
+        display: flex !important; 
+        flex-direction: column !important; 
+        position: absolute !important; 
+        top: 100% !important; 
+        left: 0 !important; 
+        width: 100% !important; 
+        background: #ffffff !important; 
+        padding: 24px !important; 
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important; 
+        z-index: 99 !important;
+      }
+      .nav.active a { color: #111 !important; padding: 12px 0 !important; border-bottom: 1px solid #f5f5f5; width: 100%; }
     }
   </style>
 </head>
@@ -131,7 +150,7 @@
 
 <header class="header">
   <div class="container header-inner">
-    <a href="index.html" class="brand">
+    <a href="index.html#home" class="brand">
       <img src="assets/logo.jpg" alt="Young City Foundation logo" />
       <div class="brand-text"><strong>Young City</strong><span>Foundation</span></div>
     </a>
@@ -146,7 +165,7 @@
       <a href="index.html#contact">Contact</a>
     </nav>
     <a class="btn btn-primary btn-donate-header" href="https://www.leetchi.com/fr/c/safe-place-for-young-city-crew-1609302" target="_blank" rel="noreferrer">Donate</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
   </div>
 </header>
 
@@ -158,6 +177,7 @@
 
     <div class="team-grid">
       
+      <!-- NEVILLE: FOUNDER & CEO CARD (Zoom safe structure) -->
       <div class="team-card-modern featured-founder">
         <div class="team-badge-role" style="background: #dc3545;">Founder & CEO</div>
         <div class="team-img-wrapper">
@@ -176,6 +196,7 @@
         </div>
       </div>
 
+      <!-- EUGENE: TRAINER -->
       <div class="team-card-modern">
         <div class="team-badge-role" style="background: #007bff;">Trainer</div>
         <div class="team-img-wrapper">
@@ -194,6 +215,7 @@
         </div>
       </div>
 
+      <!-- SEBASTIAN: SPEAKER -->
       <div class="team-card-modern">
         <div class="team-badge-role" style="background: #ffc107; color: #111;">Speaker</div>
         <div class="team-img-wrapper">
@@ -212,6 +234,7 @@
         </div>
       </div>
 
+      <!-- FELIX: COORDINATOR -->
       <div class="team-card-modern">
         <div class="team-badge-role" style="background: #28a745;">Coordinator</div>
         <div class="team-img-wrapper">
@@ -235,7 +258,6 @@
 
 <footer class="footer">
   <div class="footer-inner">
-         
     <div class="footer-text-content">
       <div class="footer-column">
         <div class="brand-line"><img src="assets/logo.jpg" alt="" /><strong>Young City Foundation</strong></div>
@@ -247,31 +269,7 @@
         <p>+254 114 633 299</p>
         <p>youngcitydancecrew@gmail.com</p>
       </div>
-      <div class="footer-column">
-        <h4>Follow Us</h4>
-        <div class="social-links">
-          <a href="https://www.instagram.com/young_city_crew?igsh=MWE3b2VoNWE0ODBobg==" target="_blank" rel="noreferrer">Instagram</a>
-          <a href="https://youtube.com/@youngcitydancekids?si=V7y2l3WD0FM87K48" target="_blank" rel="noreferrer">YouTube</a>
-          <a href="https://www.tiktok.com/@youngcitykids" target="_blank" rel="noreferrer">TikTok</a>
-        </div>
-      </div>
     </div>
-
-    <div class="footer-map-column">
-      <div class="map-wrapper"> 
-        <iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.756578052187!2d36.77046411135767!3d-1.309342498679051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1b004ce665d7%3A0x4cd782cf34fb74fb!2sMQRF%2BT736%20YOUNG%20CITY%20FOUNDATION%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1717433890000!5m2!1sen!2ske" 
-  width="100%" 
-  height="100%" 
-  style="border:0;" 
-  allowfullscreen="" 
-  loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
- 
-      </div>
-    </div>
-
   </div>
   <div class="copy">© <span id="yr"></span> Young City Foundation</div>
 </footer>
@@ -279,13 +277,26 @@
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
   
-  // Mobile responsive drop-down click support handler
-  const menuToggle = document.getElementById('menuToggle');
-  const nav = document.getElementById('nav');
-  if(menuToggle && nav) {
-    menuToggle.addEventListener('click', function() {
-      nav.classList.toggle('active');
-    });
+  // Explicitly forced responsive menu engine for Safari typography zoom scaling
+  var menuToggle = document.getElementById('menuToggle');
+  var nav = document.getElementById('nav');
+  
+  if (menuToggle && nav) {
+    menuToggle.onclick = function(e) {
+      e.stopPropagation();
+      if (nav.classList.contains('active')) {
+        nav.classList.remove('active');
+      } else {
+        nav.classList.add('active');
+      }
+    };
+    
+    // Close mobile dropdown if user clicks outside of the menu list area
+    document.onclick = function(e) {
+      if (nav.classList.contains('active') && !nav.contains(e.target) && e.target !== menuToggle) {
+        nav.classList.remove('active');
+      }
+    };
   }
 </script>
 </body>
