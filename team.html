@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Premium Interactive Team Overrides */
+    /* Interactive Modern Team Layout Overrides */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -36,7 +36,7 @@
     .team-img-wrapper {
       position: relative;
       width: 100%;
-      padding-top: 110%; /* Harmonized aspect ratio avoids blank spaces */
+      padding-top: 110%;
       overflow: hidden;
       background: #f4f4f4;
     }
@@ -56,7 +56,7 @@
       position: absolute;
       top: 16px;
       left: 16px;
-      background: var(--brand-blue-deep, #1a1a1a);
+      background: #1a1a1a;
       color: #fff;
       padding: 6px 14px;
       border-radius: 20px;
@@ -95,24 +95,18 @@
       font-size: 13px;
     }
     .team-connect a {
-      color: var(--brand-blue, #007bff);
+      color: #007bff;
       text-decoration: none;
       font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s ease;
     }
     .team-connect a:hover {
-      color: #0056b3;
       text-decoration: underline;
     }
     .team-decor-stripe {
       height: 4px;
       width: 100%;
-      background: linear-gradient(90deg, var(--brand-blue, #007bff), var(--brand-green, #28a745));
+      background: linear-gradient(90deg, #007bff, #28a745);
     }
-    /* Highlight layout showcase styling for Founder card */
     .featured-founder {
       grid-column: 1 / -1;
       display: flex;
@@ -124,11 +118,12 @@
     .featured-founder .team-bio-scroll { color: #ccc; }
     .featured-founder .team-img-wrapper { width: 40%; padding-top: 0; min-height: 100%; }
     .featured-founder .team-connect { border-color: #222; }
-    .featured-founder .team-connect a { color: var(--brand-yellow, #ffc107); }
+    .featured-founder .team-connect a { color: #ffc107; }
 
     @media (max-width: 768px) {
       .featured-founder { flex-direction: column; }
       .featured-founder .team-img-wrapper { width: 100%; padding-top: 100%; }
+      .nav.active { display: flex !important; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: #fff; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
     }
   </style>
 </head>
@@ -141,15 +136,14 @@
       <div class="brand-text"><strong>Young City</strong><span>Foundation</span></div>
     </a>
     <nav class="nav" id="nav">
-      <!-- Fixed programmatic routing safely loads baseline script states -->
-      <a href="index.html" onclick="localStorage.setItem('routeTo', 'home')">Home</a>
-      <a href="index.html" onclick="localStorage.setItem('routeTo', 'about')">About</a>
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
       <a href="team.html" class="active">Our Team</a>
-      <a href="index.html" onclick="localStorage.setItem('routeTo', 'gallery')">Gallery</a>
-      <a href="index.html" onclick="localStorage.setItem('routeTo', 'members')">Members</a>
-      <a href="index.html" onclick="localStorage.setItem('routeTo', 'programs')">Programs</a>
-      <a href="index.html" onclick="localStorage.setItem('routeTo', 'support')">Ways to Support</a>
-      <a href="index.html" onclick="localStorage.setItem('routeTo', 'contact')">Contact</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#members">Members</a>
+      <a href="index.html#programs">Programs</a>
+      <a href="index.html#support">Ways to Support</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
     <a class="btn btn-primary btn-donate-header" href="https://www.leetchi.com/fr/c/safe-place-for-young-city-crew-1609302" target="_blank" rel="noreferrer">Donate</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
@@ -164,9 +158,8 @@
 
     <div class="team-grid">
       
-      <!-- FEATURED FOUNDER CARD -->
       <div class="team-card-modern featured-founder">
-        <div class="team-badge-role" style="background: var(--brand-red, #dc3545);">Founder & CEO</div>
+        <div class="team-badge-role" style="background: #dc3545;">Founder & CEO</div>
         <div class="team-img-wrapper">
           <img src="assets/ceo.jpg" alt="Neville Nyamongo" />
         </div>
@@ -183,7 +176,6 @@
         </div>
       </div>
 
-      <!-- TRAINER -->
       <div class="team-card-modern">
         <div class="team-badge-role" style="background: #007bff;">Trainer</div>
         <div class="team-img-wrapper">
@@ -202,7 +194,6 @@
         </div>
       </div>
 
-      <!-- SPEAKER -->
       <div class="team-card-modern">
         <div class="team-badge-role" style="background: #ffc107; color: #111;">Speaker</div>
         <div class="team-img-wrapper">
@@ -221,8 +212,7 @@
         </div>
       </div>
 
-      <!-- COORDINATOR -->
-      <div class="team-card-modern" style="grid-column: span 1;">
+      <div class="team-card-modern">
         <div class="team-badge-role" style="background: #28a745;">Coordinator</div>
         <div class="team-img-wrapper">
           <img src="assets/felix.jpg" alt="Felix Mboya" />
@@ -264,11 +254,13 @@
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
   
-  // Mobile responsive menu toggle support
+  // Mobile responsive drop-down click support handler
   const menuToggle = document.getElementById('menuToggle');
   const nav = document.getElementById('nav');
   if(menuToggle && nav) {
-    menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
+    menuToggle.addEventListener('click', function() {
+      nav.classList.toggle('active');
+    });
   }
 </script>
 </body>
